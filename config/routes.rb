@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'static#welcome'
+  root 'static#front_page'
   get '/*foo', to: redirect('/')
 
 end
