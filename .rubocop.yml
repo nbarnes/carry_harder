@@ -1,5 +1,18 @@
-AllCops:
-  DisabledByDefault: true
+inherit_from: .rubocop_todo.yml
 
-Debugger:
-  Enabled: true
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'config/application.rb'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/spring'
+    - 'config/routes.rb'
+    - 'config/initializers/assets.rb'
+    - 'bin/setup'
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: false

@@ -12,6 +12,11 @@ gem 'haml'
 gem 'figaro'
 gem 'rails_12factor' # for Heroku
 
+gem 'carrierwave'
+gem 'mini_magick'
+
+gem 'tesseract-ocr'
+
 # gem 'unicorn'
 
 group :development, :test do

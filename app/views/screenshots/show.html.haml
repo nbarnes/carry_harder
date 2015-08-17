@@ -1,0 +1,11 @@
+#notice
+  = notice
+
+= image_tag @screenshot.image_url.to_s
+
+%br
+= link_to 'New', new_screenshot_path
+|
+= link_to 'Edit', edit_screenshot_path(@screenshot)
+|
+= link_to 'Back', screenshots_path

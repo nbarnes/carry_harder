@@ -18,7 +18,8 @@
 PreCommit:
   AuthorName:
     enabled: false
-
+  RuboCop:
+    enabled: true
 
 CommitMsg:
   TextWidth:

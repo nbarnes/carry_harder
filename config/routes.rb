@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'static#front_page'
+  resources :matches
+  resources :screenshots
+  root 'screenshots#index'
   get '/*foo', to: redirect('/')
 
 end

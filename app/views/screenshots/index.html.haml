@@ -1,0 +1,22 @@
+%p#notice
+  = flash[:notice]
+
+%h1
+  Listing Screenshots
+
+- @screenshots.each do |screenshot|
+
+
+  = image_tag screenshot.image_url.to_s
+  %br
+  = link_to 'Show', screenshot
+  |
+  = link_to 'Edit', edit_screenshot_path(screenshot)
+  |
+  = link_to 'Destroy', screenshot, method: :delete, data: { confirm: 'Are you sure?' }
+  %br
+
+%br
+%br
+
+= link_to 'New Screenshot', new_screenshot_path
