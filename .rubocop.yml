@@ -7,7 +7,6 @@ AllCops:
     - 'bin/rails'
     - 'bin/rake'
     - 'bin/spring'
-    - 'config/routes.rb'
     - 'config/initializers/assets.rb'
     - 'bin/setup'
 
@@ -15,4 +14,13 @@ Style/Documentation:
   Enabled: false
 
 Style/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Style/EmptyLinesAroundAccessModifier:
+  Enabled: false
+
+Style/EmptyLinesAroundBlockBody:
   Enabled: false

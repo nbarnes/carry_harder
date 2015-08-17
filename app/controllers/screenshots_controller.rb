@@ -5,6 +5,7 @@ class ScreenshotsController < ApplicationController
     @screenshots = Screenshot.all
   end
 
+  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def show
     require 'tesseract'
 
@@ -24,8 +25,8 @@ class ScreenshotsController < ApplicationController
     end
 
     puts engine.text_for(@magickimage).strip
-
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def new
     @screenshot = Screenshot.new
