@@ -24,3 +24,6 @@ Style/EmptyLinesAroundAccessModifier:
 
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false

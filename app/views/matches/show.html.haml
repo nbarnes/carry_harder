@@ -1,0 +1,17 @@
+- binding.pry
+
+#notice
+  = notice
+  
+= "#{@match.map_name} | #{@match.game_mode} | #{@match.battle_duration}"
+
+- @match.screenshots[0].slices.each do |slice|
+  = image_tag slice[0].path
+%br
+
+= image_tag @match.screenshots[0].image_url.to_s
+
+%br
+= link_to 'New', new_match_path
+|
+= link_to 'Back', match_path

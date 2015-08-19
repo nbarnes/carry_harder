@@ -8,9 +8,29 @@ class MatchesController < ApplicationController
   def show
   end
 
+  def new
+    @match = Match.new
+    @match.screenshots.build
+  end
+
+  def create
+    @match = Match.new(match_params)
+    if @match.save
+      @match.screenshots[0].save_image_slices
+      redirect_to @match, notice: 'Match was successfully created.'
+    else
+      render :new
+    end
+  end
+
   private
     def set_match
       @match = Match.find(params[:id])
+    end
+
+    # Strong params
+    def match_params
+      params.require(:match).permit(screenshots_attributes: [:image])
     end
 
 end

@@ -5,28 +5,8 @@ class ScreenshotsController < ApplicationController
     @screenshots = Screenshot.all
   end
 
-  # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
   def show
-    require 'tesseract'
-
-    @image = @screenshot.image
-    @magickimage = MiniMagick::Image.open(@image.path)
-
-    size = '125' << 'x' << '17'
-    offset = '+' << '460' '+' << '107'
-    mogrify_arg = "#{size}#{offset}"
-
-    @magickimage.crop(mogrify_arg)
-    # @magickimage.write("public/#{@image.store_path}controller_copy.jpg")
-
-    engine = Tesseract::Engine.new do |e|
-      e.language  = :eng
-      e.blacklist = '|'
-    end
-
-    puts engine.text_for(@magickimage).strip
   end
-  # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
   def new
     @screenshot = Screenshot.new
