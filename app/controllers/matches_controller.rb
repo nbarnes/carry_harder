@@ -16,7 +16,6 @@ class MatchesController < ApplicationController
   def create
     @match = Match.new(match_params)
     if @match.save
-      @match.screenshots[0].save_image_slices
       redirect_to @match, notice: 'Match was successfully created.'
     else
       render :new

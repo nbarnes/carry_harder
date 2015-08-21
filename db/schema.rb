@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20150817040625) do
 
   create_table "screenshots", force: :cascade do |t|
     t.integer "match_id"
-    t.string  "image",    null: false
+    t.string  "image",                 null: false
+    t.string  "map_name_slice"
+    t.string  "game_mode_slice"
+    t.string  "battle_duration_slice"
   end
 
 end

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ScreenshotImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
   storage :file
 
   # Override the directory where uploaded files will be stored.
@@ -20,5 +21,34 @@ class ScreenshotImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  version :map_name_slice do
+    size = '175' << 'x' << '17'
+    offset = '+' << '420' '+' << '107'
+    mogrify_arg = "#{size}#{offset}"
+    process slice: mogrify_arg
+  end
+
+  version :game_mode_slice do
+    size = '95' << 'x' << '17'
+    offset = '+' << '660' '+' << '107'
+    mogrify_arg = "#{size}#{offset}"
+    process slice: mogrify_arg
+  end
+
+  version :battle_duration_slice do
+    size = '42' << 'x' << '17'
+    offset = '+' << '825' '+' << '107'
+    mogrify_arg = "#{size}#{offset}"
+    process slice: mogrify_arg
+  end
+
+  private
+
+    def slice(mogrify_arg)
+      manipulate! do |img|
+        img.crop(mogrify_arg)
+      end
+    end
 
 end
