@@ -2,7 +2,18 @@
 
 class ScreenshotImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  storage :file
+  # include CarrierWave::Uploader::MagicMimeWhitelist
+
+  # Storage settings in uploader take precedence over storage settings
+  # in a specific test, so directing the storage to :file when in env.test
+  # is needed here.
+  # Other branch is still set to :file pending change to cloud storage of
+  # uploaded files
+  if Rails.env.test?
+    storage :file
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -15,6 +26,13 @@ class ScreenshotImageUploader < CarrierWave::Uploader::Base
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
+  # # Override it to your needs.
+  # # By default it returns nil and the validator allows every
+  # # content-type.
+  # def whitelist_mime_type_pattern
+  #   /image\//
+  # end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
@@ -48,6 +66,7 @@ class ScreenshotImageUploader < CarrierWave::Uploader::Base
     def slice(mogrify_arg)
       manipulate! do |img|
         img.crop(mogrify_arg)
+        img.scale '300%'
       end
     end
 
