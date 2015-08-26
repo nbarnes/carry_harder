@@ -6,12 +6,12 @@ default: &default
 
 development:
   <<: *default
-  database: db/carry_harder/development
-  
+  database: carry_harder_dev
+
 test:
   <<: *default
-  database: db/carry_harder/test
+  database: carry_harder_test
 
 production:
   <<: *default
-  database: db/carry_harder/production
+  database: carry_harder_prod
