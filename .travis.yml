@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+- 2.0.0
+script:
+- psql -c 'create database db/carry_harder/test;' -U postgres
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake
+bundler_args: "--binstubs=./bundler_stubs"
+deploy:
+  provider: heroku
+  api_key:
+    secure: eWqlcWQidKLOrDtpswWPLAhATbbnsCT3iZFvOAJVBUSO40e2bMQeKawC3tNYUMAWGSTE/6EvJE77NSotWWz4hcoIVu2TnOLzIXRyrdai5wAHwf1E0Jv17AHyFrqy9K72h2mFPRVDpzXSC5vJHUpnGWRQLxbsGUKTtxBKO/I0YHTpWsAjcvGTOWVNxqkq5Y4rTSG4/ES7yjg0I5TZW+bvZdxI7FTEaI9rMIaFMB6F9krK825mm+n/kBNcGGaeRGQKx0UtKpFHoxJd3S/f9kOf9vps2NtaxU6mYHA7AEu53hzQSS8Ppn4iKkRix2CkqjCzrzZR25ZXAxAZIDBNrk243w6dhF2KjDqNDDpcQdYUcwvvaoOczguECzZJKMd/RVSUz2EUA/5Rc0l40BJhh42BapGUG93KNh0R8Lx05c468sIcIoNFW1OlZ97fesdFIJt+9B/tEnEyUPiUi8cTPXrEciNsV1DXuIlVDwdQc8KEASKyrUY5oe8l14Ul5rzBlUx2V8dUQlUDHjYvp7beDrMACIdNpvFnW0YpcXgeH/OeXwOEfa51fzfX3AjKC2+fbGM0C3ebWk4Ulx3YjeY7PLXQ701gh+rOFoxW2RhoyPdkBsnPZT3D4ME6tfMznODkK+YsjO/4OPPJP7iPra14VprZdqMmDC9AyZaMMIxtY5HVsJ0=
+  app: carry-harder
+  on:
+    repo: nbarnes/carry_harder
+  run:
+    - rake db:migrate
