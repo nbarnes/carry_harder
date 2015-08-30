@@ -7,13 +7,9 @@ class ScreenshotImageUploader < CarrierWave::Uploader::Base
   # Storage settings in uploader take precedence over storage settings
   # in a specific test, so directing the storage to :file when in env.test
   # is needed here.
-  # Other branch is still set to :file pending change to cloud storage of
-  # uploaded files
-  if Rails.env.test?
-    storage :file
-  else
-    storage :file
-  end
+  # Need to chance this to fog storage when we move to AWS cloud storage
+  # for images
+  storage :file if Rails.env.test?
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -39,6 +35,10 @@ class ScreenshotImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  version :thumbnail do
+    process resize_to_fit: [200, 200]
+  end
 
   version :map_name_slice do
     size = '175' << 'x' << '17'

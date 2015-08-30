@@ -35,6 +35,6 @@ module CarryHarder
     MiniMagick.configure do |config|
       config.cli = :graphicsmagick
     end
-    
+
   end
 end

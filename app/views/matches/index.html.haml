@@ -10,12 +10,10 @@
 %br
 
 - @matches.each do |match|
-  %br
-  = image_tag match.screenshots.first.image_url.to_s
+  = link_to match do
+    = image_tag match.screenshot.image.thumbnail.url
   %br
   = link_to 'Show', match
-  |
-  = link_to 'Edit', edit_match_path(match)
   |
   = link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' }
 

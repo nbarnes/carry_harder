@@ -1,3 +1,5 @@
+[![Dependency Status](https://gemnasium.com/nbarnes/carry_harder.svg)](https://gemnasium.com/nbarnes/carry_harder)
+
 
 Carry Harder
 ============
