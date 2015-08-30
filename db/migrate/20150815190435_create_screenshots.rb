@@ -1,5 +1,6 @@
 class CreateScreenshots < ActiveRecord::Migration
 
+  # rubocop:disable MethodLength
   def change
     create_table :screenshots do |t|
       t.integer :match_id
@@ -44,6 +45,8 @@ class CreateScreenshots < ActiveRecord::Migration
       # t.string :blue_team_charlie_player_3
       # t.string :blue_team_charlie_player_4
     end
+    add_index :screenshots, :match_id
   end
+  # rubocop:enable MethodLength
 
 end
